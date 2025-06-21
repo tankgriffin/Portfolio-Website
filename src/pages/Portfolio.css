@@ -1,0 +1,119 @@
+.portfolio-page {
+  position: relative;
+  width: 1200px;
+  height: 100vh;
+  background-color: #c00;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+  font-family: 'Bungee', sans-serif;
+  overflow-y: auto;
+  padding: 60px;
+  margin: 0 auto;
+}
+
+.portfolio-title {
+  font-size: 3rem;
+  margin-bottom: 0px;
+  margin-left: 0;
+  text-align: left;
+}
+
+.repo-list {
+  width: 700px;
+  position: absolute;
+  top: 120px;
+  left: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.repo-card {
+  background: rgba(0, 0, 0, 0.9);
+  border: 3px solid white;
+  box-shadow: 4px 4px 0 red;
+  padding: 10px 25px;
+  font-family: 'Bungee', sans-serif;
+}
+
+.repo-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.repo-card p {
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.repo-card a {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #61dafb;
+  text-decoration: none;
+}
+
+.repo-card a:hover {
+  text-decoration: underline;
+}
+
+.skill-stamp {
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  width: 500px;
+  height: auto;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.calendar-section {
+  position: absolute;
+  top: 500px;
+  left: 60px;
+  width: 700px;
+}
+
+.github-calendar {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 3px solid white;
+  box-shadow: 4px 4px 0 red;
+  width: 700px;
+}
+
+.calendar-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.calendar-month-box {
+  background: rgba(0, 0, 0, 0.85);
+  border: 3px solid white;
+  box-shadow: 4px 4px 0 red;
+  padding: 25px;
+  min-width: 120px;
+  max-width: 170px;
+  text-align: center;
+  color: white;
+  font-family: 'Bungee', sans-serif;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.calendar-day {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+}

@@ -1,0 +1,77 @@
+/* Header styling */
+.resume-header {
+  padding: 30px 60px;
+  background: rgba(0, 0, 0, 0.85);
+  border-bottom: 4px solid red;
+  text-align: left;
+}
+
+.resume-header h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.resume-header p {
+  margin-top: 8px;
+  font-size: 1.25rem;
+  color: #ccc;
+}
+
+/* Main content layout */
+.resume-content {
+  display: grid;
+  grid-template-columns: 540px 540px;
+  gap: 40px;
+  padding: 40px 60px;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* Individual section box styles */
+.resume-section {
+  background: rgba(0, 0, 0, 0.9);
+  border: 3px solid white;
+  box-shadow: 4px 4px 0 red;
+  padding: 20px 25px;
+  font-family: 'Bungee', sans-serif;
+  width: 540px;
+}
+
+.resume-section h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.resume-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resume-section li {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.resume-section p {
+  font-size: 1.1rem;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+/* Equip image stamp */
+.equip-stamp {
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  width: 500px;
+  height: auto;
+  z-index: 10;
+  pointer-events: none;
+}
+
+main {
+  padding: 0 !important;
+  width: 1200px !important;
+  margin: 0 auto !important;
+}

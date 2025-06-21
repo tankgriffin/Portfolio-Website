@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+    min-width: 1200px;
+  }
+  
+  main {
+    padding: 40px;
+    width: 1200px;
+    margin: 0 auto;
+  }
+  
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    min-width: 1200px;
+  }
+
+  /* Minimal responsive text scaling for smaller screens */
+  @media (max-width: 1400px) and (min-width: 1200px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    html {
+      font-size: 12px;
+    }
+    
+    body {
+      overflow-x: auto;
+    }
+  }
+  
+  

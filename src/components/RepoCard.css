@@ -1,0 +1,19 @@
+.repo-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .repo-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .repo-card a {
+    color: #0077b6;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  

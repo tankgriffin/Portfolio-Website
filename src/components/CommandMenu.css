@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'Persona5Main';
+    src: url('../assets/fonts/Persona5main.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }  
+
+  .command-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1200px;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #000;
+    font-family: 'Bungee', sans-serif;
+  }
+  
+  .command-list {
+    position: absolute;
+    top: 216px;
+    left: 168px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .command-list li {
+    list-style: none;
+    margin-bottom: -10px;
+  }
+  
+  .command-icon {
+    width: 500px;
+    height: auto;
+    display: block;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+  }
+  
+  /* Individual fixed position adjustments */
+  .icon-skill {
+    transform: translateX(270px);
+  }
+  
+  .icon-equip {
+    transform: translateX(220px);
+  }
+  
+  .icon-persona {
+    transform: translateX(170px);
+  }
+  
+  .icon-mission {
+    transform: translateX(120px);
+  }
+  
+  /* Hover effect with fixed position kept */
+  .icon-skill:hover {
+    transform: translateX(280px) scale(1.05);
+  }
+  
+  .icon-equip:hover {
+    transform: translateX(230px) scale(1.05);
+  }
+  
+  .icon-persona:hover {
+    transform: translateX(180px) scale(1.05);
+  }
+  
+  .icon-mission:hover {
+    transform: translateX(130px) scale(1.05);
+  }

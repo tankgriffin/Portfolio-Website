@@ -9,8 +9,8 @@
   background-position: center;
   color: white;
   font-family: 'Bungee', sans-serif;
-  overflow: hidden;
-  padding: 20px 60px;
+  overflow: visible;
+  padding: 20px 75px 20px 75px;
 }
 
 .portfolio-title {
@@ -20,19 +20,20 @@
   text-align: left;
   position: absolute;
   top: 20px;
-  left: 60px;
+  left: 75px;
 }
 
 .repo-list {
-  width: calc(100vw - 120px);
+  width: calc(100vw - 150px);
   max-width: 1000px;
   position: absolute;
-  top: 90px;
-  left: 60px;
+  top: 115px;
+  left: 75px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-height: calc(100vh - 200px);
+  padding-top: 15px;
+  max-height: calc(100vh - 225px);
   overflow-y: auto;
 }
 

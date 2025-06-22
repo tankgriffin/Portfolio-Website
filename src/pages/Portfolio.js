@@ -1,57 +1,85 @@
 import React, { useEffect, useState, useContext } from 'react';
-import {
-  eachDayOfInterval,
-  format,
-  subMonths,
-  startOfMonth,
-  endOfMonth
-} from 'date-fns';
 import { SearchContext } from '../context/SearchContext';
 import { highlightText } from '../utils/highlightText';
+import RepoCard from '../components/RepoCard';
+import ProjectDetailPanel from '../components/ProjectDetailPanel';
+import ErrorBoundary from '../components/ErrorBoundary';
 import './Portfolio.css';
 
 function Portfolio() {
   const [repos, setRepos] = useState([]);
-  const [groupedByMonth, setGroupedByMonth] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
   const { searchTerm } = useContext(SearchContext);
 
+  // Map project names to their video URLs
+  const projectVideos = {
+    'scrapper': '/videos/scrapper-demo.mp4',
+    'tic-tac-toe': '/videos/tictactoe-demo.mp4',
+    'tictactoe': '/videos/tictactoe-demo.mp4',
+    'portfolio-site': '/videos/portfolio-demo.mp4',
+    'portfolio': '/videos/portfolio-demo.mp4',
+    'portfolio-website': '/videos/portfolio-demo.mp4',
+    // Add more project mappings as needed
+  };
+
   useEffect(() => {
-    fetch('https://api.github.com/users/tankgriffin/repos')
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchRepos = async () => {
+      try {
+        const response = await fetch('https://api.github.com/users/tankgriffin/repos?sort=updated&per_page=10');
+        const data = await response.json();
         if (Array.isArray(data)) {
           setRepos(data);
         }
-      })
-      .catch((err) => console.error(err));
+      } catch (error) {
+        console.error('Error fetching repos:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRepos();
   }, []);
 
-  useEffect(() => {
-    const today = new Date();
-    const start = subMonths(today, 11);
-    const days = eachDayOfInterval({ start: startOfMonth(start), end: endOfMonth(today) });
+  const getVideoUrl = (repoName) => {
+    // Convert repo name to lowercase and remove special characters for matching
+    const cleanName = repoName.toLowerCase().replace(/[^a-z0-9]/g, '');
+    return projectVideos[cleanName] || '/videos/default-demo.mp4';
+  };
 
-    const dummyData = days.map((day) => ({
-      date: format(day, 'yyyy-MM-dd'),
-      count: Math.floor(Math.random() * 5),
-    }));
+  // Filter repos based on search term
+  const filteredRepos = repos.filter(repo => 
+    !searchTerm || 
+    repo.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (repo.description && repo.description.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
 
-    const grouped = dummyData.reduce((acc, item) => {
-      const month = format(new Date(item.date), 'MMM yyyy');
-      if (!acc[month]) acc[month] = [];
-      acc[month].push(item);
-      return acc;
-    }, {});
+  const handleCardClick = (project) => {
+    setSelectedProject(project);
+    setIsPanelOpen(true);
+  };
 
-    setGroupedByMonth(grouped);
-  }, []);
+  const handleClosePanel = () => {
+    setIsPanelOpen(false);
+    setTimeout(() => setSelectedProject(null), 150); // Clear after animation
+  };
 
-  const monthChunks = Object.entries(groupedByMonth).reduce((acc, entry, idx) => {
-    const chunkIndex = Math.floor(idx / 4);
-    if (!acc[chunkIndex]) acc[chunkIndex] = [];
-    acc[chunkIndex].push(entry);
-    return acc;
-  }, []);
+  if (loading) {
+    return (
+      <div
+        className="portfolio-page"
+        style={{
+          backgroundImage: "url('portfolio-background.png')",
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+        }}
+      >
+        <h1 className="portfolio-title">LOADING PROJECTS...</h1>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -65,48 +93,35 @@ function Portfolio() {
     >
       <h1 className="portfolio-title">My Projects</h1>
 
-      <div className="repo-list">
-        {repos.map((repo) => (
-          <div key={repo.id} className="repo-card">
-            <h2>{highlightText(repo.name, searchTerm)}</h2>
-            <p>{highlightText(repo.description || 'No description provided.', searchTerm)}</p>
-            <a
-              href={repo.html_url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View on GitHub →
-            </a>
-          </div>
-        ))}
-      </div>
-
-      <div className="calendar-section">
-        <h2 className="calendar-heading">Activity</h2>
-        {monthChunks.map((chunk, rowIdx) => (
-          <div className="calendar-row" key={rowIdx}>
-            {chunk.map(([month, days]) => (
-              <div className="calendar-month-box" key={month}>
-                <h3>{month}</h3>
-                <div className="calendar-grid">
-                  {days.map((day, idx) => (
-                    <div
-                      key={idx}
-                      className="calendar-day"
-                      style={{
-                        backgroundColor: day.count > 0 ? '#0f0' : '#333',
-                      }}
-                      title={`${day.date}: ${day.count} commits`}
-                    />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
+      <ErrorBoundary>
+        <div className="repo-list">
+          {filteredRepos.map((repo) => (
+            <ErrorBoundary key={repo.id}>
+              <RepoCard
+                repo={{
+                  ...repo,
+                  name: highlightText(repo.name, searchTerm),
+                  description: highlightText(repo.description || 'No description provided.', searchTerm)
+                }}
+                videoUrl={getVideoUrl(repo.name)}
+                onCardClick={handleCardClick}
+              />
+            </ErrorBoundary>
+          ))}
+        </div>
+      </ErrorBoundary>
 
       <img src="/skill.png" alt="Skill" className="skill-stamp" />
+
+      {/* Project Detail Panel */}
+      <ErrorBoundary>
+        <ProjectDetailPanel
+          project={selectedProject}
+          videoUrl={selectedProject ? getVideoUrl(selectedProject.name) : ''}
+          isOpen={isPanelOpen}
+          onClose={handleClosePanel}
+        />
+      </ErrorBoundary>
     </div>
   );
 }

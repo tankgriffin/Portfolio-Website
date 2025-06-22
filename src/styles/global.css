@@ -14,7 +14,7 @@
   
   main {
     padding: 40px;
-    width: 1200px;
+    max-width: 1200px;
     margin: 0 auto;
   }
   
@@ -23,6 +23,12 @@
     margin: 0;
     padding: 0;
     min-width: 1200px;
+  }
+
+  /* Prevent ResizeObserver issues with specific targeting */
+  .project-preview-window,
+  .project-detail-panel {
+    contain: layout style;
   }
 
   /* Minimal responsive text scaling for smaller screens */
@@ -40,6 +46,11 @@
     body {
       overflow-x: auto;
     }
+  }
+
+  /* Suppress webpack overlay for ResizeObserver errors */
+  iframe[id*="webpack"] {
+    display: none !important;
   }
   
   

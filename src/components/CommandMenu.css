@@ -6,20 +6,19 @@
   }  
 
   .command-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 1200px;
+    position: relative;
+    width: 100vw;
     height: 100vh;
     overflow: hidden;
     background-color: #000;
     font-family: 'Bungee', sans-serif;
+    min-width: 1200px;
   }
   
   .command-list {
     position: absolute;
-    top: 216px;
-    left: 168px;
+    top: 12%;
+    left: 14%;
     margin: 0;
     padding: 0;
   }
@@ -30,7 +29,7 @@
   }
   
   .command-icon {
-    width: 500px;
+    width: 350px;
     height: auto;
     display: block;
     transition: transform 0.2s ease;
@@ -39,34 +38,34 @@
   
   /* Individual fixed position adjustments */
   .icon-skill {
-    transform: translateX(270px);
+    transform: translateX(200px);
   }
   
   .icon-equip {
-    transform: translateX(220px);
+    transform: translateX(160px);
   }
   
   .icon-persona {
-    transform: translateX(170px);
+    transform: translateX(120px);
   }
   
   .icon-mission {
-    transform: translateX(120px);
+    transform: translateX(80px);
   }
   
   /* Hover effect with fixed position kept */
   .icon-skill:hover {
-    transform: translateX(280px) scale(1.05);
+    transform: translateX(210px) scale(1.05);
   }
   
   .icon-equip:hover {
-    transform: translateX(230px) scale(1.05);
+    transform: translateX(170px) scale(1.05);
   }
   
   .icon-persona:hover {
-    transform: translateX(180px) scale(1.05);
+    transform: translateX(130px) scale(1.05);
   }
   
   .icon-mission:hover {
-    transform: translateX(130px) scale(1.05);
+    transform: translateX(90px) scale(1.05);
   }

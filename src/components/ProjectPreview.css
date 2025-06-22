@@ -1,0 +1,148 @@
+/* ProjectPreview.css */
+.project-preview-window {
+  position: fixed;
+  width: 600px;
+  height: 450px;
+  background: rgba(0, 0, 0, 0.95);
+  border: 3px solid white;
+  box-shadow: 4px 4px 0 red, 8px 8px 0 rgba(255, 0, 0, 0.5);
+  z-index: 10000;
+  font-family: 'Bungee', sans-serif;
+  overflow: hidden;
+  animation: previewFadeIn 0.2s ease-out;
+  pointer-events: none;
+}
+
+@keyframes previewFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.preview-header {
+  background: red;
+  color: white;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid white;
+}
+
+.preview-header h3 {
+  margin: 0;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.preview-close {
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.preview-content {
+  height: calc(100% - 40px);
+  display: flex;
+  flex-direction: column;
+}
+
+.video-container {
+  flex: 1;
+  background: #111;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-container video::-webkit-media-controls-panel {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.video-container video::-webkit-media-controls-play-button,
+.video-container video::-webkit-media-controls-volume-slider,
+.video-container video::-webkit-media-controls-timeline {
+  filter: invert(1);
+}
+
+.preview-details {
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  border-top: 2px solid red;
+}
+
+.project-description {
+  font-size: 12px;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+  color: #ccc;
+}
+
+.project-tech {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+}
+
+.project-tech span {
+  color: red;
+  font-weight: bold;
+}
+
+.tech-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.tech-tag {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid white;
+  padding: 3px 8px;
+  font-size: 9px;
+  color: white !important;
+  font-weight: normal !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .project-preview-window {
+    width: 450px;
+    height: 350px;
+  }
+  
+  .preview-header h3 {
+    font-size: 14px;
+  }
+  
+  .project-description {
+    font-size: 11px;
+  }
+  
+  .project-tech {
+    font-size: 9px;
+  }
+  
+  .tech-tag {
+    font-size: 8px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .project-preview-window {
+    animation: none;
+  }
+}

@@ -1,19 +1,86 @@
 .repo-card {
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 6px;
-    background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .repo-card h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .repo-card a {
-    color: #0077b6;
-    text-decoration: none;
-    font-weight: bold;
-  }
+  background: rgba(0, 0, 0, 0.9);
+  border: 3px solid white;
+  box-shadow: 4px 4px 0 red;
+  padding: 15px 20px;
+  font-family: 'Bungee', sans-serif;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.repo-card:hover {
+  transform: scale(1.02);
+  box-shadow: 6px 6px 0 red;
+}
+
+.repo-card:active {
+  transform: scale(0.98);
+  box-shadow: 2px 2px 0 red;
+}
+
+.repo-card::before {
+  content: "Click for details";
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: red;
+  color: white;
+  padding: 4px 8px;
+  font-size: 0.7rem;
+  border: 2px solid white;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.repo-card:hover::before {
+  opacity: 1;
+}
+
+.repo-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: white;
+  text-transform: uppercase;
+}
+
+.repo-card p {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.repo-stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.repo-stats span {
+  color: #fff;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #444;
+}
+
+.repo-card a {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #61dafb;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 12px;
+  border: 2px solid #61dafb;
+  transition: all 0.2s ease;
+}
+
+.repo-card a:hover {
+  background: #61dafb;
+  color: black;
+  text-decoration: none;
+}
   
